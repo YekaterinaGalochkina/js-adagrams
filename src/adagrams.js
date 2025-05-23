@@ -1,5 +1,15 @@
+////////// Wave 1 //////////
 export const drawLetters = () => {
-  // Implement this method for wave 1
+  const lettersList = buildingLetterPool();
+  const hand = []
+  
+  for (let i = 0; i < 10; i++) {
+    const index = Math.floor(Math.random() * lettersList.length);
+    const letter = lettersList.splice(index, 1);
+    hand.push(letter[0]);
+  }
+
+  return hand
 };
 
 
