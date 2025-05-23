@@ -32,9 +32,30 @@ const buildingLetterPool = () => {
 }
 
 
+////////// Wave 2 //////////
 export const usesAvailableLetters = (input, lettersInHand) => {
-  // Implement this method for wave 2
+  const letterCount = {};
+
+    for (const letter of lettersInHand) {
+        if (letter in letterCount) {
+            letterCount[letter]++;
+        } else {
+            letterCount[letter] = 1;
+        }
+    }
+
+    for (const letter of input) {
+        if (letter in letterCount && letterCount[letter] > 0) {
+            letterCount[letter]--;
+        } else {
+            return false;
+        }
+    }
+
+    return true;
 };
+
+
 
 export const scoreWord = (word) => {
   // Implement this method for wave 3
