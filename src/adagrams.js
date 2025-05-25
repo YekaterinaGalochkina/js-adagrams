@@ -34,27 +34,31 @@ const buildingLetterPool = () => {
 
 ////////// Wave 2 //////////
 export const usesAvailableLetters = (input, lettersInHand) => {
-  const letterCount = {};
+  const letterCount = buildLetterCount(lettersInHand);
 
-    for (const letter of lettersInHand) {
-        if (letter in letterCount) {
-            letterCount[letter]++;
-        } else {
-            letterCount[letter] = 1;
-        }
+  for (const letter of input) {
+    if (letter in letterCount && letterCount[letter] > 0) {
+      letterCount[letter]--;
+    } else {
+      return false;
     }
+  }
 
-    for (const letter of input) {
-        if (letter in letterCount && letterCount[letter] > 0) {
-            letterCount[letter]--;
-        } else {
-            return false;
-        }
-    }
-
-    return true;
+  return true;
 };
 
+//Helper func returns an object that counts how many times each letter appears//
+const buildLetterCount = (letters) => {
+  const letterCount = {};
+  for (const letter of letters) {
+    if (letter in letterCount) {
+      letterCount[letter]++;
+    } else {
+      letterCount[letter] = 1;
+    }
+  }
+  return letterCount;
+};
 
 
 export const scoreWord = (word) => {
