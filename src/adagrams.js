@@ -24,12 +24,12 @@ const buildingLetterPool = () => {
   };
 
   let letters = '';
-  for (let [key,value] of Object.entries(letterPool)) {
-    letters += key.repeat(value);
+  for (let key in letterPool) {
+    letters += key.repeat(letterPool[key]);
   }
-  
+
   return letters.split('');
-}
+};
 
 
 ////////// Wave 2 //////////
