@@ -1,7 +1,7 @@
 ////////// Wave 1 //////////
 export const drawLetters = () => {
   const lettersList = buildingLetterPool();
-  const hand = []
+  const hand = [];
   
   for (let i = 0; i < 10; i++) {
     const index = Math.floor(Math.random() * lettersList.length);
@@ -9,7 +9,7 @@ export const drawLetters = () => {
     hand.push(letter[0]);
   }
 
-  return hand
+  return hand;
 };
 
 
@@ -24,6 +24,7 @@ const buildingLetterPool = () => {
   };
 
   let letters = '';
+
   for (let key in letterPool) {
     letters += key.repeat(letterPool[key]);
   }
@@ -77,16 +78,17 @@ export const scoreWord = (word) => {
   let score = 0;
 
   for (const letter of word.toUpperCase()) {
-      score += letterValues[letter]
+      score += letterValues[letter];
   }
+  
   if (word.length >= 7 && word.length <= 10) {
-    score += 8
+    score += 8;
   }
 
-  return score
+  return score;
 };
 
-
+////////// Wave 4 //////////
 export const highestScoreFrom = (words) => {
-  // Implement this method for wave 4
+  
 };
