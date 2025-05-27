@@ -106,6 +106,7 @@ export const highestScoreFrom = (words) => {
   return { word: winningWord, score: highestScore };
 };
 
+
 const betterCandidate = (newWord, currentBestWord) => {
   if (newWord.length === 10 && currentBestWord.length !== 10) {
     return true;
@@ -114,6 +115,7 @@ const betterCandidate = (newWord, currentBestWord) => {
   if (currentBestWord.length === 10) {
     return false;
   }
-  
-  return newWord.length < currentBestWord.length;
+
+  const isShorter = newWord.length < currentBestWord.length;
+  return isShorter;
 };
