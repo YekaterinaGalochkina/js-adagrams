@@ -95,10 +95,8 @@ export const highestScoreFrom = (words) => {
     if (score > highestScore) {
       highestScore = score;
       winningWord = word;
-      continue;
-    }
-
-    if (score === highestScore && betterCandidate(word, winningWord)) {
+    } 
+    else if (score === highestScore && betterCandidate(word, winningWord)) {
       winningWord = word;
     }
   }
