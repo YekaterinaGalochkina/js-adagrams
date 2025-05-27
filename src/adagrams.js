@@ -1,4 +1,3 @@
-////////// Wave 1 //////////
 export const drawLetters = () => {
   const lettersList = buildingLetterPool();
   const hand = [];
@@ -13,7 +12,6 @@ export const drawLetters = () => {
 };
 
 
-////////// Helper function to built list of all letters //////////
 const buildingLetterPool = () => {
   const letterPool = {
     'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 'F': 2,
@@ -33,7 +31,6 @@ const buildingLetterPool = () => {
 };
 
 
-////////// Wave 2 //////////
 export const usesAvailableLetters = (input, lettersInHand) => {
   const letterCount = buildLetterCount(lettersInHand);
 
@@ -48,7 +45,7 @@ export const usesAvailableLetters = (input, lettersInHand) => {
   return true;
 };
 
-//Helper func returns an object that counts how many times each letter appears//
+
 const buildLetterCount = (letters) => {
   const letterCount = {};
 
@@ -64,7 +61,6 @@ const buildLetterCount = (letters) => {
 };
 
 
-////////// Wave 3 //////////
 export const scoreWord = (word) => {
   const letterValues = {
   A: 1, E: 1, I: 1, O: 1, U: 1, L: 1, N: 1, R: 1, S: 1, T: 1,
@@ -80,7 +76,7 @@ export const scoreWord = (word) => {
   for (const letter of word.toUpperCase()) {
       score += letterValues[letter];
   }
-  
+
   if (word.length >= 7 && word.length <= 10) {
     score += 8;
   }
@@ -88,7 +84,36 @@ export const scoreWord = (word) => {
   return score;
 };
 
-////////// Wave 4 //////////
+
 export const highestScoreFrom = (words) => {
+  let highestScore = 0;
+  let winningWord = '';
+
+  for (const word of words) {
+    const score = scoreWord(word);
+
+    if (score > highestScore) {
+      highestScore = score;
+      winningWord = word;
+      continue;
+    }
+
+    if (score === highestScore && betterCandidate(word, winningWord)) {
+      winningWord = word;
+    }
+  }
+
+  return { word: winningWord, score: highestScore };
+};
+
+const betterCandidate = (newWord, currentBestWord) => {
+  if (newWord.length === 10 && currentBestWord.length !== 10) {
+    return true;
+  }
+
+  if (currentBestWord.length === 10) {
+    return false;
+  }
   
+  return newWord.length < currentBestWord.length;
 };
