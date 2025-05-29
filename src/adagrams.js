@@ -1,5 +1,5 @@
 export const drawLetters = () => {
-  const lettersList = buildingLetterPool();
+  const lettersList = buildLetterPool();
   const hand = [];
   
   for (let i = 0; i < 10; i++) {
@@ -12,7 +12,7 @@ export const drawLetters = () => {
 };
 
 
-const buildingLetterPool = () => {
+const buildLetterPool = () => {
   const letterPool = {
     'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 'F': 2,
     'G': 3, 'H': 2, 'I': 9, 'J': 1, 'K': 1, 'L': 4,
@@ -21,13 +21,15 @@ const buildingLetterPool = () => {
     'Y': 2, 'Z': 1
   };
 
-  let letters = '';
+  const letters = [];
 
   for (let key in letterPool) {
-    letters += key.repeat(letterPool[key]);
+    for (let i = 0; i < letterPool[key]; i++) {
+      letters.push(key);
   }
+}
 
-  return letters.split('');
+  return letters;
 };
 
 
@@ -70,7 +72,8 @@ export const scoreWord = (word) => {
   K: 5,
   J: 8, X: 8,
   Q: 10, Z: 10
-};
+  };
+  
   let score = 0;
 
   for (const letter of word.toUpperCase()) {
